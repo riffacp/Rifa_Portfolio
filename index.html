@@ -1,43 +1,524 @@
-<!Doctype>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>basictags</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fathima Rifa | Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- Root Variables & Reset --- */
+        :root {
+            --bg-dark: #1A1A1A;          /* Main Background */
+            --text-light: #F0F0F0;       /* Main Text Color */
+            --accent-color: #00ADB5;     /* Professional Accent Blue/Green */
+            --card-dark: #2C2C2C;        /* Card Background */
+            --link-hover: #FFFFFF;
+            --max-width: 1100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--bg-dark);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        h2 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background-color: var(--card-dark);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .navbar .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            background-color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: var(--bg-dark) !important;
+            font-weight: bold;
+        }
+        .cta-button:hover {
+            background-color: #00939c; /* Slightly darker accent */
+            color: white !important;
+        }
+
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 100px 0;
+            background-color: var(--bg-dark);
+        }
+
+        .hero-section .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 60%;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            text-align: left;
+            border: none;
+        }
+
+        .hero-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 173, 181, 0.5); /* Glowing effect */
+        }
+
+        /* --- Buttons (General) --- */
+        .primary-btn, .link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--accent-color);
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        .primary-btn:hover, .link-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .skill-card {
+            background-color: var(--card-dark);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .skill-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skill-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #3A3A3A;
+        }
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+        
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-dark);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 173, 181, 0.3);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .project-card h3 {
+            padding: 15px 15px 0;
+            color: var(--text-light);
+        }
+
+        .project-card p {
+            padding: 0 15px 15px;
+            font-size: 0.9em;
+            color: #AAAAAA;
+        }
+
+        .project-links {
+            padding: 0 15px 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* --- Contact Section --- */
+        .contact-container {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            font-size: 1.2em;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .contact-link i {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        .contact-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--card-dark);
+            color: #AAAAAA;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8em;
+        }
+
+        /* --- Media Queries (Responsiveness) --- */
+        @media (max-width: 900px) {
+            .hero-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                max-width: 100%;
+                order: 2;
+            }
+            .hero-image {
+                order: 1; 
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation Bar Mobile View */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: var(--card-dark);
+                position: absolute;
+                top: 60px; 
+                left: 0;
+                padding-bottom: 10px;
+                box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
+            }
+            .nav-links a {
+                margin: 0;
+                padding: 15px 0;
+                border-bottom: 1px solid #3A3A3A;
+            }
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            .nav-links.active { /* Class added by JS */
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1><u>Basic Tags</u></h1>
-<p>hey hello how are you.hope you are fine .thankyou.
-my name is <b>rifa</b>,iam coming from <i>kozhikode</i>kozhikode is a big city,in kozhikode there is beach,food everything is available</p>
-<ul>
-<li>head</li>
-<li>undrline</li>
-<li>list</li>
-</ul>
 
-<br>
-<h2><u>fruits</u></h2>
-<ol>
-<li>grapes</li>
-<li>melon</li>
-<li>mango</li>
-</ol>
-<table border = "1">
-<tr>
-<th>si no</th>
-<th>name</th>
-<th>age</th>
-</tr>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Fathima Rifa</a>
+            <div class="nav-links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact" class="cta-button">Contact Me</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-<tr>
-<td>1</td>
-<td>ttt</td>
-<td>20</td>
-</tr>
-<tr>
-<td>2</td>
-<td>liya</td>
-<td>20</td>
-</tr>
-</table>
-<p>hey how are you</p>
+    <header id="home" class="hero-section section-padding">
+        <div class="container">
+            <div class="hero-image">
+                <img src="rifa.jpg" alt="Professional photo of Fathima Rifa">
+            </div>
+            <div class="hero-content">
+                <h1>**Fathima Rifa**</h1>
+                <h2>Data Analyst | Bridging Data Science and Business Strategy.</h2>
+                <p>I transform complex datasets into clear, actionable recommendations using Python, SQL, and advanced visualization tools. My focus is delivering quantifiable business value through data-driven insights.</p>
+                <a href="#projects" class="primary-btn">Explore Projects</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2>🧠 About Me</h2>
+            <p>I am a highly motivated Data Analyst with a strong foundation in statistical analysis and predictive modeling. My experience involves end-to-end project management, from defining key performance indicators (KPIs) with stakeholders to deploying interactive dashboards that drive departmental efficiency. I am passionate about clean code, efficient querying, and making data accessible to everyone.</p>
+            <p>I believe that the best insights are those that are simple to understand and immediately applicable. Let's connect to discuss how I can help your team turn raw data into strategic advantage.</p>
+            <a href="fathima_rifa_resume.pdf" class="primary-btn" target="_blank">Download Resume</a>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+            <h2>🛠️ Technical Toolbox</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming & Analysis</h3>
+                    <ul>
+                        <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                        <li>R (Statistical Computing)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Data Management</h3>
+                    <ul>
+                        <li>SQL (PostgreSQL, MySQL) - Advanced Querying</li>
+                        <li>ETL & Data Warehousing Concepts</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Visualization & Reporting</h3>
+                    <ul>
+                        <li>Tableau / Power BI</li>
+                        <li>Matplotlib / Seaborn</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Concepts</h3>
+                    <ul>
+                        <li>Microsoft Excel (VBA/Advanced Formulas)</li>
+                        <li>Git / GitHub for Version Control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <h2>⭐ Data Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card" data-skill="Python, Tableau">
+                    <img src="project1-sales-dashboard.jpg" alt="Sales dashboard thumbnail">
+                    <h3>Retail Sales Forecast & Dashboard</h3>
+                    <p>Built a sales forecasting model (ARIMA) in **Python** and visualized key metrics on a dynamic **Tableau** dashboard, resulting in a 12% improvement in inventory accuracy.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="link-btn">Tableau Public</a>
+                        <a href="#" target="_blank" class="link-btn">GitHub Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-skill="SQL, PowerBI">
+                    <img src="project2-customer-churn.jpg" alt="Customer churn analysis thumbnail">
+                    <h3>Customer Churn Analysis</h3>
+                    <p>Utilized complex **SQL** joins and CTEs to extract customer data. Created a **Power BI** report identifying high-risk segments and reducing churn by 8% in the pilot program.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="link-btn">Power BI Report</a>
+                        <a href="#" target="_blank" class="link-btn">GitHub Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-skill="Python, Sklearn">
+                    <img src="project3-nlp.jpg" alt="NLP sentiment analysis thumbnail">
+                    <h3>Social Media Sentiment Analysis</h3>
+                    <p>Applied **NLP** techniques in **Python (Scikit-learn)** to classify user comments, providing the marketing team with a real-time view of campaign performance and public perception.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="link-btn">Live Demo</a>
+                        <a href="#" target="_blank" class="link-btn">GitHub Code</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container contact-container">
+            <h2>🤝 Connect With Me</h2>
+            <p>I'm eager to discuss new opportunities in data analysis. Feel free to connect via email or my professional networks.</p>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com" class="contact-link"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/fathima-rifa-profile" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/fathima-rifa-profile" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://public.tableau.com/profile/fathima-rifa" target="_blank" class="contact-link"><i class="fas fa-chart-bar"></i> Tableau Public</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Designed and Built by Fathima Rifa &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            // 1. Hamburger Menu Toggle
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const icon = hamburger.querySelector('i');
+                    // Toggle the icon between bars and X
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close menu when a link is clicked (for smoother single-page navigation)
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        // Reset icon to bars
+                        hamburger.querySelector('i').classList.remove('fa-times');
+                        hamburger.querySelector('i').classList.add('fa-bars');
+                    });
+                });
+            }
+
+            // --- Future Enhancement: Smooth Scrolling (Optional JS) ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Only prevent default for internal links
+                    if (this.getAttribute('href').length > 1) { 
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
 </body>
-</html>
+</html>s
